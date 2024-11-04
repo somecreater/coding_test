@@ -1,7 +1,8 @@
+package section_8;
+
 import java.util.Scanner;
 
-public class Main {
-
+public class problem_1 {
     public int solution(String str){
         int answer=0;
 
@@ -9,7 +10,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Main T= new Main();
+        problem_1 T= new problem_1();
         Scanner sc=new Scanner(System.in);
         String str=sc.next();
         System.out.println(T.solution(str));
