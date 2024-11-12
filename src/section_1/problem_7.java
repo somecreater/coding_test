@@ -28,11 +28,28 @@ public class problem_7 {
     }
 
     /*
+    입력된 문자의 절반을 나누고 0,1,2,..
+    size-1,size-2,size-3,.. 이런식으로 각각 앞 부분과
+    뒷부분의 문자들을 비교한다 만약 끝까지 같다면 회문으로
+    볼 수 있다.
 
+    아니면 StringBuilder 클래스의 reverse 메소드를 이용해서
+    문자열을 뒤집고 String 클래스의 equalsIgnoreCase 메소드로
+    대소문자 구별없이 원래 문자열과 뒤집어진 문자열을 비교한다
     */
 
     public String solution(String str){
-        String answer="";
+        /*
+        String answer="YES";
+        str=str.toUpperCase();
+        int len=str.length();
+        for(int i=0; i<len/2; i++){
+            if(str.charAt(i)!=str.charAt(len-i-1)) answer="NO";
+        }
+        */
+        String answer="NO";
+        String tmp=new StringBuilder(str).reverse().toString();
+        if(str.equalsIgnoreCase(tmp)) answer="YES";
 
         return answer;
     }
@@ -41,9 +58,13 @@ public class problem_7 {
     public static void main(String[] args) {
         problem_7 T= new problem_7();
         Scanner sc=new Scanner(System.in);
+
+        /*
         String str=sc.next();
         System.out.println(T.my_solution(str));
+        */
 
-
+        String str=sc.next();
+        System.out.print(T.solution(str));
     }
 }
