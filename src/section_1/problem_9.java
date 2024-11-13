@@ -25,12 +25,26 @@ public class problem_9 {
     }
 
     /*
+    아스키 넘버가 48~57 사이에 있으면 '0'~'9'이다.
+    위의 조건에 만족하는 문자들 한정으로
+    answer=answer*10+(char 문자-48); 식을 적용시키면
+    단어를 숫자로 변환할 수 있다.
 
+    아니면 Character 클래스의 isDigit 메소드를 활용해서 숫자여부를 검사해서
+    단어를 구성하고 해당 단어를 Integer 클래스의 parseInt 메소드를 이용해서
+    숫자로 변환하면 된다.
     */
-    public String solution(String str){
+    public int solution(String str){
+        //int answer=0;
         String answer="";
-
-        return answer;
+        for(char x : str.toCharArray()){
+            //if(x>=48 && x<=57) answer=answer*10+(x-48);
+			/*if(Character.isDigit(x)){
+				answer=answer*10+ Character.getNumericValue(x);
+			}*/
+            if(Character.isDigit(x)) answer+=x;
+        }
+        return Integer.parseInt(answer);
     }
 
 
