@@ -7,23 +7,21 @@ import java.util.Scanner;
 public class problem_10 {
 
     /*
-    풀이하는 중
+    일단 문장과 문자를 입력으로 받고, 해당 문장을 String 클래스의
+    replaceAll 메소드를 활용해서 0으로 변환하고
+    split 메소드를 활용해서 원래 문장을 나누고 나서, 나눠진 단어들을
+    거리로 변환하려고 했지만 실패했다.
     */
     public String my_solution(String str,String charstr){
         String answer="";
         int[] intanswer=new int[str.length()];
-        char charword=charstr.charAt(0);
-        char[] chararr=str.toCharArray();
+        String orgstr=str.replace(charstr,"0");
+        String[] orgstrarr=orgstr.split("0");
+        if(orgstr.indexOf("0")!=0){
 
-        for(int i=0;i<str.length();i++){
-            if(chararr[i]==charword){
-                intanswer[i]=0;
-            }
-        }
-        for(int j=0;j<str.length();j++){
+        }else{
 
         }
-
         return answer;
     }
 
