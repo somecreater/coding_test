@@ -16,7 +16,7 @@ public class problem_8 {
     팰린드롬 여부를 판단할 수 있다.
     */
     public String my_solution(String str){
-        String answer="";
+        String answer="NO";
         char[] orgstr=str.toUpperCase().toCharArray();
         String alpstr="";
         for(int i=0;i<orgstr.length;i++)
@@ -36,12 +36,16 @@ public class problem_8 {
     }
 
     /*
-
+    String 클래스의 replaceAll 메소드와 정규식 "[^A-Z]"를 이용해서
+    String 클래스의 toUpperCase 메소드를 통해 대문자로 변환된 문장에서
+    알파벳이 아닌 것들을 빈 문자로 변환시킨다
+    StringBuilder 클래스의 reverse 메소드로 해당 문장을 뒤집어서 팰린드롬 여부를 판단한다.
     */
     public String solution(String str){
-
         String answer="NO";
-
+        str=str.toUpperCase().replaceAll("[^A-Z]", "");
+        String tmp=new StringBuilder(str).reverse().toString();
+        if(str.equals(tmp)) answer="YES";
         return answer;
     }
 
