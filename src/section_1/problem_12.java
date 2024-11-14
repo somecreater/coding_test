@@ -24,6 +24,7 @@ public class problem_12 {
                     .substring((binstr.length()/n)*i
                             ,(binstr.length()/n)*(i+1));
             int k=Integer.parseInt(binorgstr,2);
+            char c= (char) k;
             answer+=Character.toString(k);
 
         }
