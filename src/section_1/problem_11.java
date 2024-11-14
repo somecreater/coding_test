@@ -1,7 +1,6 @@
 package section_1;
 
 import java.util.Scanner;
-import java.util.Set;
 
 public class problem_11 {
 
@@ -34,11 +33,26 @@ public class problem_11 {
     }
 
     /*
-
+    문자열을 입력으로 받고,
+    중복 문자 수를 저장할 cnt를 1로 초기화 시켜놓는다.
+    i번째 문자와 i+1의 문자를 비교해서 만약 같으면 cnt를 1 증가 시키고
+    다르면 i번째 문자+cnt(cnt가 2 이상일때만)를 answer 문자열에
+    append 한다.
+    이런 식으로 입력된 문자열 끝까지 수행하면 된다.
     */
-    public String solution(String str){
-        String answer="";
 
+    public String solution(String s){
+        String answer="";
+        s=s+" ";
+        int cnt=1;
+        for(int i=0; i<s.length()-1; i++){
+            if(s.charAt(i)==s.charAt(i+1)) cnt++;
+            else{
+                answer+=s.charAt(i);
+                if(cnt>1) answer+=String.valueOf(cnt);
+                cnt=1;
+            }
+        }
         return answer;
     }
 
