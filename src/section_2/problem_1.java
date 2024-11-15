@@ -24,14 +24,22 @@ public class problem_1 {
         return answer;
     }
 
+    /*
+    내가 문제를 푼 방식과 동일
+    */
     public List<Integer> solution(int n, int[] arr){
-        List<Integer> answer=new ArrayList<>();
-
+        ArrayList<Integer> answer = new ArrayList<>();
+        answer.add(arr[0]);
+        for(int i=1; i<n; i++){
+            if(arr[i]>arr[i-1]) answer.add(arr[i]);
+        }
         return answer;
     }
     public static void main(String[] args) {
         problem_1 T= new problem_1();
         Scanner sc=new Scanner(System.in);
+
+        /*
         int n=sc.nextInt();
         int[] arr=new int[n];
         for(int i=0;i<n;i++){
@@ -39,6 +47,16 @@ public class problem_1 {
         }
         for(int i:T.my_solution(n,arr)){
             System.out.print(i+" ");
+        }
+        */
+
+        int n=sc.nextInt();
+        int[] arr=new int[n];
+        for(int i=0; i<n; i++){
+            arr[i]=sc.nextInt();
+        }
+        for(int x : T.solution(n, arr)){
+            System.out.print(x+" ");
         }
     }
 }
