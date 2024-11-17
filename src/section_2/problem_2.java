@@ -36,11 +36,21 @@ public class problem_2 {
     }
 
     /*
-
+    배열의 길이와 배열을 입력으로 받는다.
+    초기 max 값은 배열 처음 값으로 초기화한다.
+    만약 max 값보다 배열의 요소 값이 더 크면 카운팅을 1 증가 시키고
+    max 값에 해당 값을 넣는다.
+    만약 max 값보다 배열의 요소 값이 작거나 같으면 그냥 무시하고 인덱스만 증가 시킨다.
+    위의 연산을 수행하면 답을 구할 수 있다.
     */
     public int solution(int n, int[] arr){
-        int answer=0;
-
+        int answer=1, max=arr[0];
+        for(int i=1; i<n; i++){
+            if(arr[i]>max){
+                max=arr[i];
+                answer++;
+            }
+        }
         return answer;
     }
     public static void main(String[] args) {
