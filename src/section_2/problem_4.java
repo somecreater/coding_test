@@ -33,12 +33,31 @@ public class problem_4 {
         return answer;
     }
 
+
     /*
-
+    첫번째 풀이방법은 내가 푼방식과 동일하다.
+    두번째 풀이방법은 출력할 피보나치 배열의 길이를 입력 받고
+    그 정도 길이의 피보나치 배열을 생성하고 인덱스 0,1의 값만
+    1,1 로 초기화 시키고 이것을 활용해서 모든 배열의 요소들의 값을 구하는 방식이다.
     */
-    public int[] solution(int n){
-        int[] answer=new int[n];
+    public void solution1(int n){
+		int a=1, b=1, c;
+		System.out.print(a+" "+b+" ");
+		for(int i=2; i<n; i++){
+			c=a+b;
+			System.out.print(c+" ");
+			a=b;
+			b=c;
+		}
+	}
 
+    public int[] solution2(int n){
+        int[] answer=new int[n];
+        answer[0]=1;
+        answer[1]=1;
+        for(int i=2; i<n; i++){
+            answer[i]=answer[i-2]+answer[i-1];
+        }
         return answer;
     }
 
@@ -46,6 +65,9 @@ public class problem_4 {
         problem_4 T= new problem_4();
         Scanner sc=new Scanner(System.in);
         int n=sc.nextInt();
-        System.out.println(T.my_solution(n));
+        //System.out.println(T.my_solution(n));
+
+        //T.solution1(n);
+        for(int x :T.solution2(n)) System.out.print(x+" ");
     }
 }
