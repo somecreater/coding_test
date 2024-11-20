@@ -29,11 +29,17 @@ public class problem_7 {
 
 
     /*
-
+    내가 푼 방식과 동일하다
     */
     public int solution(int n, int[] arr){
-        int answer = 0;
-
+        int answer=0, cnt=0;
+        for(int i=0; i<n; i++){
+            if(arr[i]==1){
+                cnt++;
+                answer+=cnt;
+            }
+            else cnt=0;
+        }
         return answer;
 	}
 
