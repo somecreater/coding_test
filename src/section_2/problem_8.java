@@ -29,11 +29,21 @@ public class problem_8 {
 
 
     /*
-
+    int형 n과 int의 배열형 arr을 입력으로 받는다.
+    cnt값을 1로 초기화 시키고 첫번째 요소부터
+    모든 요소들을 각각 비교하면서 등수를 계산한다.
+    만약 해당 요소보다 다른 요소가 크다면 cnt를 증가시키는 방식으로
+    이렇게 하면 정답을 구할 수 있다.
     */
     public int[] solution(int n, int[] arr){
-        int[] answer=new int[n];
-
+        int[] answer = new int[n];
+        for(int i=0; i<n; i++){
+            int cnt=1;
+            for(int j=0; j<arr.length; j++){
+                if(arr[j]>arr[i]) cnt++;
+            }
+            answer[i]=cnt;
+        }
         return answer;
 	}
 
