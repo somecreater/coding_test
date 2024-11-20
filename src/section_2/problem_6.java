@@ -42,17 +42,37 @@ public class problem_6 {
 
 
     /*
-
+        int 형 n과 int의 배열인 arr을 입력으로 받는다.
+        해당 요소를 연산으로 뒤집고 나서 해당 요소가 소수인지 여부를
+        2부터 해당요소-1 까지 나누기 계산을 통해 판단하고
+        소수면 ArrayList에 추가하는 방식으로답을 구한다.
     */
-    public List<Integer> solution(int n, String[] arr){
-        List<Integer> answer=new ArrayList<>();
-
+    public boolean isPrime(int num){
+        if(num==1) return false;
+        for(int i=2; i<num; i++){
+            if(num%i==0) return false;
+        }
+        return true;
+    }
+    public ArrayList<Integer> solution(int n, int[] arr){
+        ArrayList<Integer> answer = new ArrayList<>();
+        for(int i=0; i<n; i++){
+            int tmp=arr[i];
+            int res=0;
+            while(tmp>0){
+                int t=tmp%10;
+                res=res*10+t;
+                tmp=tmp/10;
+            }
+            if(isPrime(res)) answer.add(res);
+        }
         return answer;
 	}
 
     public static void main(String[] args) {
         problem_6 T= new problem_6();
         Scanner sc=new Scanner(System.in);
+        /*
         int n=sc.nextInt();
         String[] arr=new String[n];
         for(int i=0;i<n;i++){
@@ -66,5 +86,16 @@ public class problem_6 {
                 System.out.print(" "+ans.get(i));
             }
         }
+        */
+
+        int n=sc.nextInt();
+        int[] arr=new int[n];
+        for(int i=0; i<n; i++){
+            arr[i]=sc.nextInt();
+        }
+        for(int x : T.solution(n, arr)){
+            System.out.print(x+" ");
+        }
+
     }
 }
