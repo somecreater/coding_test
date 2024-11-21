@@ -43,10 +43,30 @@ public class problem_10 {
 
 
     /*
-
+        네방향을 봐서 자기보다 크거나 같으면 봉우리 아닌걸로 판단
+        여기서는 배열인 dx, dy를 각각 {-1,0,1,0},{0,1,0,-1}로 초기화한다.
+        i+dx[k], j+dy[k]로 상하 좌우 인덱스를 구한다.
+        경계값을 못보게 하기 위해 추가 조건도 걸어준다.(범위 안 벗어나게)
+        디폴트를 true로 걸으면 경계값 확인도 문제 없다.
     */
+    int[] dx={-1, 0, 1, 0};
+    int[] dy={0, 1, 0, -1};
     public int solution(int n, int[][] arr){
         int answer=0;
+        for(int i=0; i<n; i++){
+            for(int j=0; j<n; j++){
+                boolean flag=true;
+                for(int k=0; k<4; k++){
+                    int nx=i+dx[k];
+                    int ny=j+dy[k];
+                    if(nx>=0 && nx<n && ny>=0 && ny<n && arr[nx][ny]>=arr[i][j]){
+                        flag=false;
+                        break;
+                    }
+                }
+                if(flag) answer++;
+            }
+        }
         return answer;
 	}
 
