@@ -36,11 +36,30 @@ public class problem_9 {
 
 
     /*
-
+        내가 푼 방식과 같지만 해당 방법에서는
+        인덱스 i와 j의 위치를 각각 다르게 해서
+        행과 열의 합을 구하였다.
+        그리고 메모리를 훨씬 절약하였다.
     */
     public int solution(int n, int[][] arr){
-        int answer = 0;
-
+        int answer=-2147000000;
+        int sum1=0, sum2=0;
+        for(int i=0; i<n; i++){
+            sum1=sum2=0;
+            for(int j=0; j<n; j++){
+                sum1+=arr[i][j];
+                sum2+=arr[j][i];
+            }
+            answer=Math.max(answer, sum1);
+            answer=Math.max(answer, sum2);
+        }
+        sum1=sum2=0;
+        for(int i=0; i<n; i++){
+            sum1+=arr[i][i];
+            sum2+=arr[i][n-i-1];
+        }
+        answer=Math.max(answer, sum1);
+        answer=Math.max(answer, sum2);
         return answer;
 	}
 
