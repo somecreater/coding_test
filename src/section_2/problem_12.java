@@ -58,17 +58,42 @@ public class problem_12 {
 
 
     /*
-
+        사중 for문을 이용해서 풀어야 한다.
+        ex) n=4(학생수), m=3(테스트수) 이고 이중 배열(3,4)을 입력받는다.
+        일단 이중 for(i(1~n), j(1~n))문이 돌면서
+        조건이 맞는지 확인해야(멘토, 멘티 선택)
+        이중 for 내에서 테스트 횟수(k(0~m-1))마다,
+        등수 별로(s(0~n-1)) 확인 해봐야한다.
+        if(arr[k][s]==i), if(arr[k][s]==j) 같은 조건식을 통해
+        각가의 등수를 확인한다
     */
-    public int solution(int n, int[][] arr){
+    public int solution(int n, int m, int[][] arr){
         int answer=0;
-
+        for(int i=1; i<=n; i++){
+            for(int j=1; j<=n; j++){
+                int cnt=0;
+                for(int k=0; k<m; k++){
+                    int pi=0, pj=0;
+                    for(int s=0; s<n; s++){
+                        if(arr[k][s]==i) pi=s;
+                        if(arr[k][s]==j) pj=s;
+                    }
+                    if(pi<pj) cnt++;
+                }
+                if(cnt==m){
+                    answer++;
+                    System.out.println(i+" "+j);
+                }
+            }
+        }
         return answer;
 	}
 
     public static void main(String[] args) {
         problem_12 T= new problem_12();
         Scanner sc=new Scanner(System.in);
+
+        /*
         int n=sc.nextInt();
         int m=sc.nextInt();
         int[][] arr=new int[n][n];
@@ -77,7 +102,17 @@ public class problem_12 {
                 arr[i][j]=sc.nextInt();
             }
         }
-        System.out.println(T.my_solution(n,m,arr));
+        */
+
+        int n=sc.nextInt();
+        int m=sc.nextInt();
+        int[][] arr=new int[n][n];
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                arr[i][j]=sc.nextInt();
+            }
+        }
+        System.out.println(T.solution(n,m,arr));
 
     }
 }
