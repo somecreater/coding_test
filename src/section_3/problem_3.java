@@ -33,11 +33,18 @@ public class problem_3 {
     }
 
     /*
-
+        슬라이딩 윈도우를 이용해서 푼다(길이가 k인 창을 만든다.
+        이것을 그대로 밀고 간다고 생각, 옆으로 한 칸 씩)
+        앞뒤로 한칸씩 더하고 빼자.
     */
-    public int solution(int n, int k, int[] a){
-        int answer=0;
-
+    public int solution(int n, int k, int[] arr){
+        int answer, sum=0;
+        for(int i=0; i<k; i++) sum+=arr[i];
+        answer=sum;
+        for(int i=k; i<n; i++){
+            sum+=(arr[i]-arr[i-k]);
+            answer=Math.max(answer, sum);
+        }
         return answer;
     }
 
@@ -51,6 +58,7 @@ public class problem_3 {
         for(int i=0;i<n;i++){
            arr[i]=sc.nextInt();
         }
-        System.out.println(T.my_solution(n,k,arr));
+        //System.out.println(T.my_solution(n,k,arr));
+        System.out.println(T.solution(n,k,arr));
     }
 }
