@@ -1,5 +1,6 @@
 package section_3;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -37,10 +38,23 @@ public class problem_1 {
 
     }
 
-    public void solution(int n1,int[] a,int n2,int[] b){
-        int[] answer=new int[n1+n2];
-
-
+    /*
+        내가 푼 방식하고 비슷하다. (포인터의 개념)
+        ArrayList로 정답 출력, 각각의 포인터 둘다
+        다만 포인터의 크기에 따라 세가지 경우로 나눠서 푼다.
+        둘다 배열의 길이보다 작은 경우, 둘중에 하나만 배열의 길이보다
+        작은 경우
+    */
+    public ArrayList<Integer> solution(int n, int m, int[] a, int[] b){
+        ArrayList<Integer> answer = new ArrayList<>();
+        int p1=0, p2=0;
+        while(p1<n && p2<m){
+            if(a[p1]<b[p2]) answer.add(a[p1++]);
+            else answer.add(b[p2++]);
+        }
+        while(p1<n) answer.add(a[p1++]);
+        while(p2<m) answer.add(b[p2++]);
+        return answer;
     }
 
     public static void main(String[] args) {
@@ -56,6 +70,11 @@ public class problem_1 {
         for(int i=0;i<m;i++){
             b[i]=sc.nextInt();
         }
+        /*
         T.my_solution(n,a,m,b);
+        */
+        for(int x : T.solution(n, m, a, b))
+            System.out.print(x+" ");
+
     }
 }
