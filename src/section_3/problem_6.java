@@ -33,11 +33,25 @@ public class problem_6 {
     }
 
     /*
-
+    투 포인트 알고리즘을 활용한다.
+    lt,rt 둘다 0으로 초기화 한다. cnt(0으로 바꾼 횟수)도 0으로 초기화 한다.(반드시 k 이하여야한다)
+    rt가 계속 증가하고 증가할때마다 길이를 구한다.
+    rt-lt+1, 이게 수열의 길이이다. 초기에는 1이고, rt가 증가하면 2가 된다. answer를 계속 갱신시킨다(최댓값만)
+    0을 만날때 마다 cnt는 1씩 증가되어야 한다(바꿔야하니까)
+    만약 cnt가 k보다 커지는 순간이 된다면, lt가 0을 만날때까지 lt를 증가시키고
+    0을 처음 만난 다음에 멈춘다.(즉 1로 바꾼 곳을 원복시킨다) 이때 answer보다 길이가 작으면 갱신안한다.
+    그러고나서 다시 rt를 증가시킨다. 이렇게 구하면된다.
     */
     public int solution(int n, int k, int[] arr){
-        int answer=0;
-
+        int answer=0, cnt=0, lt=0;
+        for(int rt=0; rt<n; rt++){
+            if(arr[rt]==0) cnt++;
+            while(cnt>k){
+                if(arr[lt]==0) cnt--;
+                lt++;
+            }
+            answer=Math.max(answer, rt-lt+1);
+        }
         return answer;
     }
 
@@ -52,6 +66,7 @@ public class problem_6 {
           int x=sc.nextInt();
           arr[i]=x;
         }
-        System.out.println(T.my_solution(n,k,arr));
+        //System.out.println(T.my_solution(n,k,arr));
+        System.out.println(T.solution(n,k,arr));
     }
 }
