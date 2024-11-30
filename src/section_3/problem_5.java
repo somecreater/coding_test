@@ -42,12 +42,29 @@ public class problem_5 {
         return answer;
     }
 
+    /*
+         ex) 15, 첫번째 숫자에 1, 두번째 숫자에 2를 할당 그러면 12가 남는다
+         12/2=6 (1,6), (2,6) 즉 1 빼고 2 빼고나서 2로 나눠 떨어지면 되는것을 알 수 있다.
+         이것을 확장하면 (1,k),(2,k),(3,k).... 이렇게도 가능하다.
+    */
+    public int solution_2(int n){
+        int answer=0, cnt=1;
+        n--;
+        while(n>0){
+            cnt++;
+            n=n-cnt;
+            if(n%cnt==0) answer++;
+        }
+        return answer;
+    }
+
     public static void main(String[] args) {
         problem_5 T= new problem_5();
         Scanner sc=new Scanner(System.in);
 
         int n=sc.nextInt();
         //System.out.println(T.my_solution(n));
-        System.out.println(T.solution(n));
+        //System.out.println(T.solution(n));
+        System.out.println(T.solution_2(n));
     }
 }
