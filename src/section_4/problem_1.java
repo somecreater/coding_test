@@ -41,11 +41,33 @@ public class problem_1 {
 
 
     /*
-
+    HashMap 자료형을 이용하고 key,value 를 Character, Integer 로
+    잡아야한다. (후보자, 후보자 득표수)
+    HashMap 클래스의 getOrDefault 메소드를 활용해서 키값이 없는 경우도 0을 리턴하도록 한다.
+    이렇게 결과값을 저장하고 나서, HashMap 클래스의 keySet 메소드로 키값들을 가져와서,
+    그중에서 가장 큰 값을 가진 키를 답으로 저장한다.
+    containKey 메소드는 특정키의 포함여부를 확인할 수 있다.
+    size 메소드는 키의 종류 개수를 알려준다.
+    remove 메소드는 특정키를 삭제하고 해당 키의 값을 리턴한다.
     */
-    public char solution(int n, String str){
-        char answer=Character.MIN_VALUE;
+    public char solution(int n, String s){
+        char answer=' ';
+        HashMap<Character, Integer> map=new HashMap<>();
+        for(char x : s.toCharArray()){
+            map.put(x, map.getOrDefault(x, 0)+1);
+        }
+        //System.out.println(map.containsKey('F'));
+        //System.out.println(map.size());
+        //System.out.println(map.remove('C'));
 
+        int max=Integer.MIN_VALUE;
+        for(char key : map.keySet()){
+            //System.out.println(key+" "+map.get(key));
+            if(map.get(key)>max){
+                max=map.get(key);
+                answer=key;
+            }
+        }
         return answer;
     }
 
@@ -54,6 +76,7 @@ public class problem_1 {
         Scanner sc=new Scanner(System.in);
         int n=sc.nextInt();
         String str=sc.next();
-        System.out.println(T.my_solution(n,str));
+        //System.out.println(T.my_solution(n,str));
+        System.out.println(T.solution(n,str));
     }
 }
