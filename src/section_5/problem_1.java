@@ -40,11 +40,26 @@ public class problem_1 {
     }
 
     /*
-
+    스택은 last in first out 구조이다
+    큐는 first in first out 구조이다
+    이것은 스택으로 풀면 된다 Character 형 스택을 하나 만든다.
+    닫는 괄호에 여는 괄호는 서로 짝이라고 볼 수 있다.
+    즉 닫는 괄호가 여는 괄호를 만났을때, pop을 수행하면 된다.
+    만약 여는 괄호가 닫히지 않거나(탐색 종료후에도 스택에 요소가 남아있는 경우),
+    닫는 괄호를 만났는데, 스택이 비어있다면 (isEmpty 메소드로 확인),
+    잘못된 것이다.
      */
     public String solution(String str){
-        String answer="";
-
+        String answer="YES";
+        Stack<Character> stack=new Stack<>();
+        for(char x : str.toCharArray()){
+            if(x=='(') stack.push(x);
+            else{
+                if(stack.isEmpty()) return "NO";
+                stack.pop();
+            }
+        }
+        if(!stack.isEmpty()) return "NO";
         return answer;
     }
 
@@ -52,6 +67,7 @@ public class problem_1 {
         problem_1 T= new problem_1();
         Scanner sc=new Scanner(System.in);
         String str=sc.next();
-        System.out.println(T.my_solution(str));
+        //System.out.println(T.my_solution(str));
+        System.out.println(T.solution(str));
     }
 }
