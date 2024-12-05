@@ -45,11 +45,24 @@ public class problem_2 {
     }
 
     /*
-
-     */
+    문자열로 입력받고,
+    각각 문자를 Stack<Character> 에 입력받는다.
+    여는 괄호를 만나도 계속 저장하다가, 만약 닫는 괄호를 만난다면,
+    제일 위쪽에 있는 여는 괄호와 닫는 괄호사이의 문자를 제거하는 것(pop 메소드를 이용한다)
+    을 반복하면 된다.
+    최종적인 Stack 자료형에 대해, get 메소드나, for문으로 가져오든해서
+    답을 구할 수 있다.
+    */
     public String solution(String str){
         String answer="";
-
+        Stack<Character> stack=new Stack<>();
+        for(char x : str.toCharArray()){
+            if(x==')'){
+                while(stack.pop()!='(');
+            }
+            else stack.push(x);
+        }
+        for(int i=0; i<stack.size(); i++) answer+=stack.get(i);
         return answer;
     }
 
@@ -57,6 +70,7 @@ public class problem_2 {
         problem_2 T= new problem_2();
         Scanner sc=new Scanner(System.in);
         String str=sc.next();
-        System.out.println(T.my_solution(str));
+        //System.out.println(T.my_solution(str));
+        System.out.println(T.solution(str));
     }
 }
