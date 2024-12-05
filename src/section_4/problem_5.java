@@ -43,11 +43,38 @@ public class problem_5 {
 
 
     /*
-
+    여기서는 자료형 TreeSet 을 활용한다.
+    그리고 Collections.reverseOrder() 를 이용해서 값들을 내림차순으로
+    저장하도록 설정한다.
+    삼중 for문을 이용해서 배열 arr에서 3개의 값을 뽑고 합을
+    TreeSet에 추가하면 된다.
+    그리고 하나씩 추출하면서 k번째의 값을 찾았을때 해당 값을 출력하면 된다.
+    TreeSet 클래스의 remove 메소드는 원소 제거,
+    size 메소드는 원소의 총 개수를 출력하고,
+    first 메소드는 제일 앞의 원소를 가져온다(내림차순이므로 가장 큰값),
+    last 메소드는 제일 뒤의 원소를 가져온다
     */
-    public int solution(int n, int k, ArrayList<Integer> arr){
-        int answer=0;
+    public int solution(int n, int k, int[] arr) {
+        int answer = -1;
+        TreeSet<Integer> Tset = new TreeSet<>(Collections.reverseOrder());
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                for (int l = j + 1; l < n; l++) {
+                    Tset.add(arr[i] + arr[j] + arr[l]);
+                }
+            }
+        }
+        int cnt = 0;
+        //Tset.remove(143);
+        //System.out.println(Tset.size());
+        //System.out.println("first : "+ Tset.first());
+        //System.out.println("last : "+ Tset.last());
 
+        for (int x : Tset) {
+            //System.out.println(x);
+            cnt++;
+            if (cnt == k) return x;
+        }
         return answer;
     }
 
