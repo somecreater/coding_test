@@ -41,18 +41,38 @@ public class problem_3 {
     }
 
     /*
-
+    바구니를 스택으로 한다.
+    moves 내 요소들을 하나씩 입력 받고 해당 요소를 position 이라고 한다면
+    board 에서 해당 요소는 board[i][position-1] 에 있다고 할 수 있다.
+    해당 열을 탐색하고 0이 아닌 값을 발견(인형을 발견)하면 스택에 넣고,
+    board 의 해당 위치를 0으로 만들고 크레인은 중단된다.(break)
+    만약 해당 열이 전부 0이면 그냥 지나간다.
+    스택 위의 인형과 같다면 인형이 터지면서 사라진다.(answer+=2를 수행)
     */
-    public int solution(int N, int[][] boardlist,int M, int[] moves){
+    public int solution(int[][] board, int[] moves){
         int answer=0;
-
+        Stack<Integer> stack = new Stack<>();
+        for(int pos : moves){
+            for(int i=0; i<board.length; i++){
+                if(board[i][pos-1]!=0){
+                    int tmp=board[i][pos-1];
+                    board[i][pos-1]=0;
+                    if(!stack.isEmpty() && tmp==stack.peek()){
+                        answer+=2;
+                        stack.pop();
+                    }
+                    else stack.push(tmp);
+                    break;
+                }
+            }
+        }
         return answer;
     }
 
     public static void main(String[] args) {
         problem_3 T= new problem_3();
         Scanner sc=new Scanner(System.in);
-
+        /*
         int N=sc.nextInt();
         int[][] boardlist=new int[N][N];
 
@@ -71,5 +91,17 @@ public class problem_3 {
         }
 
         System.out.println(T.my_solution(N,boardlist,M,moves));
+    */
+        int n=sc.nextInt();
+        int[][] board=new int[n][n];
+        for(int i=0; i<n; i++){
+            for(int j=0; j<n; j++){
+                board[i][j]=sc.nextInt();
+            }
+        }
+        int m=sc.nextInt();
+        int[] moves=new int[m];
+        for(int i=0; i<m; i++) moves[i]=sc.nextInt();
+        System.out.println(T.solution(board, moves));
     }
 }
