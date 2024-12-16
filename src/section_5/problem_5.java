@@ -47,19 +47,32 @@ public class problem_5 {
     }
 
     /*
-
+    스택을 이용하자
+    여는 괄호를 만나면 push 한다.
+    닫는 괄호를 만나면 레이저를 말하는 건지, 쇠막대기의 끝을 알리는 괄호인지
+    알아야 한다. 바로 앞의 것을 확인하면 된다. 만약 여는 괄호면 레이저, 아니면 막대기 끝이다.
+    레이저로 판단되면 stack 에서 여는 괄호를 pop 시키고 남은 여는 괄호 수 만큼 answer 에 누적 시킨다.
+    만약 막대기 끝이라고 판단되면, 이제 레이저 영향 안받는다. stack 에서 여는 괄호를 pop 시키고 answer 에 1을 더한다.
     */
     public int solution(String str){
-        int answer=0;
-
-        return answer;
+        int cnt=0;
+        Stack<Character> stack=new Stack<>();
+        for(int i=0; i<str.length(); i++){
+            if(str.charAt(i)=='(') stack.push('(');
+            else{
+                stack.pop();
+                if(str.charAt(i-1)=='(') cnt+=stack.size();
+                else cnt++;
+            }
+        }
+        return cnt;
     }
 
     public static void main(String[] args) {
         problem_5 T= new problem_5();
         Scanner sc=new Scanner(System.in);
         String str=sc.next();
-        System.out.println(T.my_solution(str));
-        //System.out.println(T.solution(str));
+        //System.out.println(T.my_solution(str));
+        System.out.println(T.solution(str));
     }
 }
