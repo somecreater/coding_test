@@ -49,11 +49,28 @@ public class problem_4 {
     }
 
     /*
-
+    후위식: 5-3 -> 53-
+    즉 숫자면 push 하고 연산자를 만나면 스택에서 top 과 top-1의 스택값을 꺼내서
+    연산하고 나서 결과값을 스택에 넣는 방식으로 계산하면 된다.
+    계산이 끝나면 숫자 하나만 남는다.
     */
     public int solution(String str){
         int answer=0;
-
+        Stack<Integer> stack = new Stack<>();
+        for(char x : str.toCharArray()){
+            if(Character.isDigit(x)){
+                stack.push(x-48);
+            }
+            else{
+                int rt=stack.pop();
+                int lt=stack.pop();
+                if(x=='+') stack.push(lt+rt);
+                else if(x=='-') stack.push(lt-rt);
+                else if(x=='*') stack.push(lt*rt);
+                else if(x=='/') stack.push(lt/rt);
+            }
+        }
+        answer=stack.get(0);
         return answer;
     }
 
@@ -61,7 +78,7 @@ public class problem_4 {
         problem_4 T= new problem_4();
         Scanner sc=new Scanner(System.in);
         String str=sc.next();
-        System.out.println(T.my_solution(str));
-        //System.out.println(T.solution(str));
+        //System.out.println(T.my_solution(str));
+        System.out.println(T.solution(str));
     }
 }
