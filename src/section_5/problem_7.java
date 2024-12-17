@@ -44,11 +44,26 @@ public class problem_7 {
     }
 
     /*
-
+    문자열 두 개를 입력받고
+    필수 과목은 큐에 저장한다(중복 없음)
+    수업 계획을 하나씩 탐색한다
+    큐에 있는지 먼저 확인한다.만약 있다면 큐의 맨 앞과 일치하는지 확인한다.
+    위의 조건을 만족한다면 큐에서 사라지고 다음 문자를 읽는다.
+    만족하지 않는다면 NO를 출력한다.
+    큐에 해당 문자가 없다면, 그냥 넘어가고 다음 문자를 읽는다.
+    큐가 비어 있다면 YES를 출력하면 된다. 만약 비어있지 않다면 전부 듣지 않은 것이므로
+    NO를 출력해야 한다.
     */
-    public String solution(String str1,String str2){
-        String answer="";
-
+    public String solution(String need, String plan){
+        String answer="YES";
+        Queue<Character> Q=new LinkedList<>();
+        for(char x : need.toCharArray()) Q.offer(x);
+        for(char x : plan.toCharArray()){
+            if(Q.contains(x)){
+                if(x!=Q.poll()) return "NO";
+            }
+        }
+        if(!Q.isEmpty()) return "NO";
         return answer;
     }
 
@@ -56,8 +71,8 @@ public class problem_7 {
         problem_7 T= new problem_7();
         Scanner sc=new Scanner(System.in);
         String str1=sc.next();
-        String str2 =sc.next();
-        System.out.println(T.my_solution(str1, str2));
-        //System.out.println(T.solution(N,k));
+        String str2=sc.next();
+        //System.out.println(T.my_solution(str1, str2));
+        System.out.println(T.solution(str1,str2));
     }
 }
