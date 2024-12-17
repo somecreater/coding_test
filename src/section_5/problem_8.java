@@ -49,11 +49,41 @@ public class problem_8 {
     }
 
     /*
-
+    클래스 형(id(순서대로), 우선순위)으로 자료형을 잡아서 큐에 저장한다.
+    하나씩 꺼내보면서 우선순위를 비교한다. 만약 우선순위가 적으면
+    뒤에 추가하면 된다. 만약 우선순위가 가장 크고 주어진 M과
+    아이디가 일치하지 않으면, 단순히 answer 만 1을 증가시킨다.
+    서로 일치하면, answer를 1 증가시키고 리턴하면 된다.
+    여기서 클래스를 사용한거 빼고는 논리구조는 비슷하다.
     */
-    public int solution(int N, int M, int[] arr){
+    class Person{
+        int id;
+        int priority;
+        public Person(int id, int priority){
+            this.id=id;
+            this.priority=priority;
+        }
+    }
+    public int solution(int n, int m, int[] arr){
         int answer=0;
-
+        Queue<Person> Q=new LinkedList<>();
+        for(int i=0; i<n; i++){
+            Q.offer(new Person(i, arr[i]));
+        }
+        while(!Q.isEmpty()){
+            Person tmp=Q.poll();
+            for(Person x : Q){
+                if(x.priority>tmp.priority){
+                    Q.offer(tmp);
+                    tmp=null;
+                    break;
+                }
+            }
+            if(tmp!=null){
+                answer++;
+                if(tmp.id==m) return answer;
+            }
+        }
         return answer;
     }
 
@@ -67,7 +97,7 @@ public class problem_8 {
         for(int i=0;i<N;i++){
             arr[i]=sc.nextInt();
         }
-        System.out.println(T.my_solution(N, M, arr));
-        //System.out.println(T.solution(N, M, arr));
+        //System.out.println(T.my_solution(N, M, arr));
+        System.out.println(T.solution(N, M, arr));
     }
 }
