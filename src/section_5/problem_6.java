@@ -1,6 +1,7 @@
 package section_5;
 
 import java.util.ArrayDeque;
+import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
@@ -39,12 +40,25 @@ public class problem_6 {
     }
 
     /*
+    큐는 선입선출의 구조이다.(한쪽으로는 들어가고 한쪽으로 나온다)
+    offer 메소드로 넣고, poll 메소드로 꺼낸다. peek 메소드는 제일 앞의 값만
+    확인한다.
+    contains 메소드는 특정 요소의 포함여부를 확인할때 사용한다.
 
+    1 번부터 N 번까지 큐에 넣는다. 그리고 poll 메소드로 큐에서 빼고 큐에 다시
+    offer로 뒤에 집어 넣는다. 만약 k에 해당하는 번호를 외치는 순간, 그냥 poll 메소드만
+    사용하고 넣지는 않는다. 이런식으로 하면 최종적으로 하나만(size 가 1일 때) 남는다.
     */
-    public int solution(int N,int K){
-        int cnt=0;
-
-        return cnt;
+    public int solution(int n,int k){
+        int answer=0;
+        Queue<Integer> Q=new LinkedList<>();
+        for(int i=1; i<=n; i++) Q.offer(i);
+        while(!Q.isEmpty()){
+            for(int i=1; i<k; i++) Q.offer(Q.poll());
+            Q.poll();
+            if(Q.size()==1) answer=Q.poll();
+        }
+        return answer;
     }
 
     public static void main(String[] args) {
