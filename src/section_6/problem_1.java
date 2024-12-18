@@ -30,12 +30,23 @@ public class problem_1 {
     }
 
     /*
-
+    선택 정렬은 i가 0일때 j는 1부터 끝까지, i가 1일 때는 j는 2부터 끝까지
+    이런식으로 돌면 된다.
+    가장 최솟값을 가진 인덱스를 idx에 따로 저장하고
+    만약 최솟값을 가진 요소를 발견하면 idx를 j로 교체한다.
+    다 돌면 i번째 요소와 idx 번째 요소를 서로 교체하면 된다.
     */
-    public int[] solution(int N,int[] arr){
-        int[] answer=new int[N];
-
-        return answer;
+    public int[] solution(int n, int[] arr){
+        for(int i=0; i<n-1; i++){
+            int idx=i;
+            for(int j=i+1; j<n; j++){
+                if(arr[j]<arr[idx]) idx=j;
+            }
+            int tmp=arr[i];
+            arr[i]=arr[idx];
+            arr[idx]=tmp;
+        }
+        return arr;
     }
 
     public static void main(String[] args) {
@@ -46,7 +57,12 @@ public class problem_1 {
         for(int i=0;i<N;i++){
             arr[i]=sc.nextInt();
         }
+        /*
         for(int a:T.my_solution(N,arr)){
+            System.out.print(a+" ");
+        }
+        */
+        for(int a:T.solution(N,arr)){
             System.out.print(a+" ");
         }
     }
