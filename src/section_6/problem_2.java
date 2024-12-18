@@ -23,10 +23,22 @@ public class problem_2 {
     }
 
     /*
-
+    버블 정렬은 앞뒤를 서로 비교한다.
+    오름차순 기준으로, 앞에가 크고 뒤에가 작으면 서로 바꿔준다.
+    이것을 이중 for 문을 이용한다.
+    내부 for문은 한번 for문 마다 가장 뒤의 값이 결정되기 때문에
+    0부터 n-i-2 까지만 돌려도 된다.
     */
     public int[] solution(int n, int[] arr){
-
+        for(int i=0; i<n-1; i++){
+            for(int j=0; j<n-i-1; j++){
+                if(arr[j]>arr[j+1]){
+                    int tmp=arr[j];
+                    arr[j]=arr[j+1];
+                    arr[j+1]=tmp;
+                }
+            }
+        }
         return arr;
     }
 
@@ -39,9 +51,13 @@ public class problem_2 {
             arr[i]=sc.nextInt();
         }
 
+        /*
         for(int a:T.my_solution(n,arr)){
             System.out.print(a+" ");
         }
-
+        */
+        for(int a:T.solution(n,arr)){
+            System.out.print(a+" ");
+        }
     }
 }
