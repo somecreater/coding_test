@@ -57,12 +57,30 @@ public class problem_4 {
     }
 
     /*
-
+    배열로 한번 풀어보자
+    cache 사이즈를 s로 잡는다.
+    만약 메모리에 작업이 없으면 c[i]=c[i-1] 이런식으로 뒤로 밀고 0 번에 현재 작업을 넣는다.
+    만약 작업이 존재하면 1번 부터 작업이 존재하는 곳까지 뒤로 민다 0 번에는 현재 작업을 넣는다.
+    작업 존재 여부는 배열을 직접 탐색한다.
     */
-    public int[] solution(int s, int n, int[] arr){
-        int[] answer= new int[n];
-
-        return answer;
+    public int[] solution(int size, int n, int[] arr){
+        int[] cache=new int[size];
+        for(int x : arr){
+            int pos=-1;
+            for(int i=0; i<size; i++) if(x==cache[i]) pos=i;
+            if(pos==-1){
+                for(int i=size-1; i>=1; i--){
+                    cache[i]=cache[i-1];
+                }
+            }
+            else{
+                for(int i=pos; i>=1; i--){
+                    cache[i]=cache[i-1];
+                }
+            }
+            cache[0]=x;
+        }
+        return cache;
     }
 
     public static void main(String[] args) {
@@ -75,14 +93,14 @@ public class problem_4 {
             arr[i]=sc.nextInt();
         }
 
-
+        /*
         for(int a:T.my_solution(s,n,arr)){
             System.out.print(a+" ");
         }
-        /*
+        */
         for(int a:T.solution(s,n,arr)){
             System.out.print(a+" ");
         }
-        */
+
     }
 }
