@@ -1,6 +1,7 @@
 package section_6;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class problem_5 {
@@ -25,11 +26,19 @@ public class problem_5 {
     }
 
     /*
-
+    일단 배열과 배열의 크기를 입력받는다
+    그리고 해당 배열을 오름차순으로 정렬한다. 이웃한 숫자를 비교하고
+    같은게 존재하면 바로 D를 출력하면 된다.
     */
-    public String solution(int n,ArrayList<Integer> list){
+    public String solution(int n, int[] arr){
         String answer="U";
-
+        Arrays.sort(arr);
+        for(int i=0; i<n-1; i++){
+            if(arr[i]==arr[i+1]){
+                answer="D";
+                break;
+            }
+        }
         return answer;
     }
 
@@ -37,18 +46,19 @@ public class problem_5 {
         problem_5 T= new problem_5();
         Scanner sc=new Scanner(System.in);
         int n=sc.nextInt();
-        /*
+
         int[] arr=new int[n];
         for(int i=0;i<n;i++){
             arr[i]=sc.nextInt();
         }
-        */
+        System.out.println(T.solution(n, arr));
+        /*
         ArrayList<Integer> list=new ArrayList<>();
         for(int i=0;i<n;i++){
             int tmp=sc.nextInt();
             list.add(tmp);
         }
         System.out.println(T.my_solution(n,list));
-
+        */
     }
 }
