@@ -37,11 +37,25 @@ public class problem_8 {
     }
 
     /*
-
+    이분검색을 하자
+    일단 주어진 배열을 오름차순 정렬한다. lt, rt 변수를 각각 0, n-1로 초기화 한다.
+    mid 변수는 (lt+rt)/2로 초기화 하고, 계속 arr[mid]==m 이 참인지 확인한다.
+    만약 mid>m이면, rt를 mid-1로 바뀌고, mid는 (lt+rt)/2로 구한다.
+    만약 반대면 lt는 mid+1로 바뀌고, mid는 (lt+rt)/2로 구한다.
     */
     public int solution(int n, int m, int[] arr){
         int answer=0;
-
+        Arrays.sort(arr);
+        int lt=0, rt=n-1;
+        while(lt<=rt){
+            int mid=(lt+rt)/2;
+            if(arr[mid]==m){
+                answer=mid+1;
+                break;
+            }
+            if(arr[mid]>m) rt=mid-1;
+            else lt=mid+1;
+        }
         return answer;
     }
 
@@ -55,7 +69,7 @@ public class problem_8 {
         for(int i=0;i<n;i++){
             arr[i]=sc.nextInt();
         }
-        System.out.println(T.my_solution(n,m,arr));
-
+        //System.out.println(T.my_solution(n,m,arr));
+        System.out.println(T.solution(n,m,arr));
     }
 }
