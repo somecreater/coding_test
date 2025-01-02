@@ -39,12 +39,61 @@ public class problem_1 {
         return n*my_solution_3(n-1);
     }
 
-    public void solution(int n){}
+    /*
+        n-2번째 항과 n-1번째 항을 더하면 n번째 항을 구할수 있다. 이것을
+        이진트리로 구성하면 금방 이해할 수 있다. 이것을 for문을 통해 여러번 수행하면
+        답을 구할 수 있다.
+
+        아니면 정적 배열을 활용해서 for문 없이 한번에 답을 구할 수 있다. 추가로
+        메모리제이션을 이용해서 시간복잡도를 훨씬더 줄일 수 있다.
+        그리고 for문이 재귀보다 더 빠르다.
+    */
+    public String my_solution_4_2(int n){
+        String answer="";
+        for(int i=1;i<n+1;i++){
+            answer+=my_solution_4(i)+" ";
+        }
+        return answer;
+    }
+    public String my_solution_4(int n){
+        int a3=0;
+        if(n==1||n==2){
+            return String.valueOf(1);
+        }else{
+            a3=Integer.parseInt(my_solution_4(n-1))
+                    +Integer.parseInt(my_solution_4(n-2));
+        }
+        return String.valueOf(a3);
+    }
+
+    public int DFS_1(int n){
+        if(n==1) return 1;
+        else if(n==2) return 1;
+        else return DFS_1(n-2)+DFS_1(n-1);
+    }
+
+    static int[] fibo;
+    public int DFS_2(int n){
+        if(fibo[n]>0) return fibo[n];
+        if(n==1) return fibo[n]=1;
+        else if(n==2) return fibo[n]=1;
+        else return fibo[n]=DFS_2(n-2)+DFS_2(n-1);
+    }
+
 
     public static void main(String[] args) {
         problem_1 T= new problem_1();
         Scanner sc=new Scanner(System.in);
-        int n=sc.nextInt();
-        System.out.print(T.my_solution_3(n));
+        //int n=sc.nextInt();
+        //System.out.print(T.my_solution_4_2(n));
+
+        /*
+        int n=10;
+		for(int i=1; i<=n; i++) System.out.print(T.DFS(i)+" ");
+        */
+        int n=45;
+        fibo=new int[n+1];
+        T.DFS_2(n);
+        for(int i=1; i<=n; i++) System.out.print(fibo[i]+" ");
     }
 }
