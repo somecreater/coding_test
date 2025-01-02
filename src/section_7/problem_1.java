@@ -29,12 +29,22 @@ public class problem_1 {
         return my_solution_2(n/2)+Integer.toString(n%2);
 
     }
+    /*
+    아래와 같이 구현하면, 순서대로 n*n-1*... 이런식으로 호출된다.
+    */
+    public int my_solution_3(int n){
+        if(n==1){
+            return 1;
+        }
+        return n*my_solution_3(n-1);
+    }
+
     public void solution(int n){}
 
     public static void main(String[] args) {
         problem_1 T= new problem_1();
         Scanner sc=new Scanner(System.in);
         int n=sc.nextInt();
-        System.out.print(T.my_solution_2(n));
+        System.out.print(T.my_solution_3(n));
     }
 }
