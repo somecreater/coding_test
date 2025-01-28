@@ -81,19 +81,51 @@ public class problem_1 {
     }
 
 
+    /*
+        이진트리 순회를 자바로 구현해보았다.
+        노드 클래스(왼쪽 번지, 데이터, 오른쪽 번지)를 이용하였다.
+    */
+    /*
+    class Node{
+        public int data;
+        public Node lt;
+        public Node rt;
+        public Node(int data){
+            this.data=data;
+            lt=rt=null;
+        }
+    }
+    class tree{
+        Node root;
+        public void DFS(Node root){
+            if(root==null){
+                return;
+            }else{
+                //이것은 중위 순회이다(왼->중앙->오른쪽)
+                DFS(root.lt);
+                System.out.print(root.data+" ");
+                DFS(root.rt);
+            }
+        }
+        public void test(){
+            tree tes=new tree();
+
+            tes.root=new Node(1);
+            tes.root.lt=new Node(2);
+            tes.root.rt=new Node(3);
+            tes.root.lt.lt=new Node(4);
+            tes.root.lt.rt=new Node(5);
+            tes.root.rt.lt=new Node(6);
+            tes.root.rt.rt=new Node(7);
+            tes.DFS(tes.root);
+        }
+    }
+    */
+
+
     public static void main(String[] args) {
         problem_1 T= new problem_1();
         Scanner sc=new Scanner(System.in);
-        //int n=sc.nextInt();
-        //System.out.print(T.my_solution_4_2(n));
 
-        /*
-        int n=10;
-		for(int i=1; i<=n; i++) System.out.print(T.DFS(i)+" ");
-        */
-        int n=45;
-        fibo=new int[n+1];
-        T.DFS_2(n);
-        for(int i=1; i<=n; i++) System.out.print(fibo[i]+" ");
     }
 }
