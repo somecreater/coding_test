@@ -122,6 +122,21 @@ public class problem_1 {
     }
     */
 
+    /*
+    입력된 N부터 1까지의 정수를 원소로 갖는 집합의
+    부분집합을 구하는 문제이다
+    1부터 첫번째 원소를 고르고 그 뒤로 n-k개(k는 처음 고른 원소값)부터
+    1개를 골라서 출력하면 될거 같다.
+
+    */
+    public void my_solution_6(int n){
+        for(int i=1;i<n+1;i++){
+            //i=k
+            for(int j=n+1-i;j>0;j--) {
+                //fcn(i,j) i를 첫원소로 가지고 총 원소수가 j개인 부분 집합
+            }
+        }
+    }
 
     public static void main(String[] args) {
         problem_1 T= new problem_1();
