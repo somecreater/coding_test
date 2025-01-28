@@ -137,10 +137,41 @@ public class problem_1 {
             }
         }
     }
-
+    /*
+        이진 트리로 각각 갈라져서 상태를 표현하면 된다.
+        원소를 넣을수도 안 넣을수도 있다.
+        ex. 원소 3개면 총 2*2*2=8가지 경우이다
+        1부터 사용한다 사용하지 않는다로 구분하자, 각각의 원소들에 대해
+        이진트리를 이용한다. 마지막 원소까지 확인해야하므로
+        n+1까지 돌아야한다.
+        ch 배열은 각 원소에 대한 사용여부를 저장한다
+    */
+    static int n;
+    static int[] ch;
+    public void solution_6(int L){
+        if(L==n+1){
+            String tmp="";
+            for(int i=1;i<=n;i++){
+                if(ch[i]==1) tmp+=(i+" ");
+            }
+            if(tmp.length()>0){
+                System.out.println(tmp);
+            }
+        }
+        else{
+            //사용한다
+            ch[L]=1;
+            solution_6(L+1);
+            //사용안한다
+            ch[L]=0;
+            solution_6(L+1);
+        }
+    }
     public static void main(String[] args) {
         problem_1 T= new problem_1();
         Scanner sc=new Scanner(System.in);
-
+        n=sc.nextInt();
+        ch=new int[n+1];
+        T.solution_6(1);
     }
 }
