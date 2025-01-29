@@ -1,5 +1,7 @@
 package section_7;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class problem_1 {
@@ -167,11 +169,64 @@ public class problem_1 {
             solution_6(L+1);
         }
     }
+
+    //이진트리의 넓이 우선 탐색
+    /*
+    1,2,3 레벨 순으로 탐색한다.
+    0레벨<- 루트, 1레벨은 루트의 자식, ... 이런식이다.
+    루트에서 한번만에 가는거 탐색, 두번만에 가는 것 탐색....
+    */
+    Node root;
+    public void BFS(Node root){
+        Queue<Node> Q=new LinkedList<>();
+        Q.offer(root);
+        int L=0;
+        while(!Q.isEmpty()){
+            int len=Q.size();
+            System.out.print(L+" : ");
+            for(int i=0;i<len;i++){
+                Node cur=Q.poll();
+                System.out.print(cur.data+" ");
+                if(cur.lt!=null) Q.offer(cur.lt);
+                if(cur.rt!=null) Q.offer(cur.rt);
+            }
+            L++;
+            System.out.println();
+        }
+    }
+
+    /*
+        송아지 찾기 문제
+
+    */
+    public void my_solution_7(int s, int e){
+        int movecnt=0;
+        while(s!=e){
+
+        }
+    }
+
     public static void main(String[] args) {
         problem_1 T= new problem_1();
         Scanner sc=new Scanner(System.in);
-        n=sc.nextInt();
-        ch=new int[n+1];
-        T.solution_6(1);
+        T.root=new Node(1);
+        T.root.lt=new Node(2);
+        T.root.rt=new Node(3);
+        T.root.lt.lt=new Node(4);
+        T.root.lt.rt=new Node(5);
+        T.root.rt.lt=new Node(6);
+        T.root.rt.rt=new Node(7);
+        T.BFS(T.root);
+    }
+}
+
+//이진 트리의 넓이 우선 탐색 구현용 클래스
+class Node{
+    public int data;
+    public Node lt;
+    public Node rt;
+    public Node(int data){
+        this.data=data;
+        lt=rt=null;
     }
 }
