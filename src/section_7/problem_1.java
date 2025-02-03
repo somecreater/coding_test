@@ -176,6 +176,7 @@ public class problem_1 {
     0레벨<- 루트, 1레벨은 루트의 자식, ... 이런식이다.
     루트에서 한번만에 가는거 탐색, 두번만에 가는 것 탐색....
     */
+    /*
     Node root;
     public void BFS(Node root){
         Queue<Node> Q=new LinkedList<>();
@@ -194,14 +195,32 @@ public class problem_1 {
             System.out.println();
         }
     }
-
+    */
     /*
         송아지 찾기 문제
-
+        송아지가 앞에 있는지 뒤에 있는지 판단하고 조건에 따라 1로만 뒤로 이동하거나
+        앞으로 5나 1로 이동하는 방식을하면 될거 같은데 잘 모르겠다
     */
-    public void my_solution_7(int s, int e){
-        int movecnt=0;
-        while(s!=e){
+    static int movecnt=0;
+    static int[] location=new int[10000];
+    static int s;
+    static int e;
+    public void my_solution_7(int mov, int loc){
+        if(loc==s){
+            System.out.println(movecnt);
+        }
+        else{
+            if(loc>e){
+                movecnt++;
+                loc--;
+                location[loc-1]=1;
+                my_solution_7(movecnt,loc);
+            }else{
+                //5로 앞으로 이동
+                movecnt++;
+                my_solution_7(movecnt,loc);
+                //1로 앞으로 이동
+            }
 
         }
     }
@@ -209,17 +228,15 @@ public class problem_1 {
     public static void main(String[] args) {
         problem_1 T= new problem_1();
         Scanner sc=new Scanner(System.in);
-        T.root=new Node(1);
-        T.root.lt=new Node(2);
-        T.root.rt=new Node(3);
-        T.root.lt.lt=new Node(4);
-        T.root.lt.rt=new Node(5);
-        T.root.rt.lt=new Node(6);
-        T.root.rt.rt=new Node(7);
-        T.BFS(T.root);
+        s=sc.nextInt();
+        e=sc.nextInt();
+        s-=1;
+        e-=1;
+        T.my_solution_7(movecnt,s);
     }
 }
 
+/*
 //이진 트리의 넓이 우선 탐색 구현용 클래스
 class Node{
     public int data;
@@ -229,4 +246,4 @@ class Node{
         this.data=data;
         lt=rt=null;
     }
-}
+}*/
