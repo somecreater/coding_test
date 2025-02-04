@@ -273,17 +273,6 @@ public class problem_1 {
     public static void main(String[] args) {
         problem_1 T= new problem_1();
         Scanner sc=new Scanner(System.in);
-        /*
-        s=sc.nextInt();
-        e=sc.nextInt();
-        s-=1;
-        e-=1;
-        T.my_solution_7(movecnt,s);
-         */
-        int s=sc.nextInt();
-        int e=sc.nextInt();
-        System.out.println(T.solution_7(s,e));
-
     }
 }
 
