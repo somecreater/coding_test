@@ -50,6 +50,18 @@ public class problem_3 {
         System.out.println("총 경로의 수는 "+answer+"개 입니다");
     }
 
+    /*
+    무방향 그래프 표현 방법,
+    일단 2차원 배열을 하나 잡는다. ex)1,2-> arr[1][2]=1, arr[2][1]=1 이런식으로
+    만약 1번 노드와 연결된 노드들을 탐색하려면, 1행에서 1인 인덱스를 가져오면 된다.
+
+    방향 그래프는 이동하는 방향이 정해짐
+    똑같이 2차원 배열을 잡되, 1->2, arr[1][2]=1 이런식으로
+    잡으면 된다.
+
+    가중치 그래프도 2차원 배열에 값만 다르게 넣으면 된다.
+
+    */
     public void solution(){
 
     }
@@ -73,10 +85,13 @@ public class problem_3 {
 }
 
 class grap{
+    //방문자 리스트 추가
+    public boolean[] invitelist;
     public int front;
     public int cur;
     public grap(int x){
         cur=x;
         front=0;
+        invitelist=null;
     }
 }
